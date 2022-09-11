@@ -2,10 +2,9 @@ from flask import Flask, request
 from flask_cors import CORS, cross_origin
 from flask.helpers import send_from_directory
 import ast
-from models.TeamCreation import createTeams
+from backend.TeamCreation import createTeams
 
-app = Flask(__name__, static_folder='govtech-championship/build', static_url_path='')
-app = Flask(__name__)
+app = Flask(__name__, static_folder='frontend/build', static_url_path='')
 CORS(app)
 
 @app.route("/team-creation", methods=["POST"])

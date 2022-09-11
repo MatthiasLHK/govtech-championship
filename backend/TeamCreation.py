@@ -1,4 +1,4 @@
-from models.Models import Team
+from .Models import Team
 
 def createTeams(input):
     # print(input)
