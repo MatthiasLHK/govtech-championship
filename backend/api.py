@@ -5,6 +5,7 @@ import ast
 from models.TeamCreation import createTeams
 
 app = Flask(__name__, static_folder='govtech-championship/build', static_url_path='')
+app = Flask(__name__)
 CORS(app)
 
 @app.route("/team-creation", methods=["POST"])
@@ -31,6 +32,7 @@ def makeTeams():
 @cross_origin()
 def submitMatchResults():
     return "Match results"
+
 @app.route('/')
 @cross_origin()
 def serve():
