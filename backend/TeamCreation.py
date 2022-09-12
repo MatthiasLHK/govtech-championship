@@ -1,4 +1,5 @@
 from .Models import Team
+import datetime
 
 def createTeams(input):
     # print(input)
@@ -10,8 +11,9 @@ def createTeams(input):
             continue
         entry.strip()
         data = entry.split(" ")
-        tmpTeam = Team(data[0], data[1], data[2])
+        tmp = data[1].strip().split("/")
+        date = datetime.date(2022, int(tmp[1]), int(tmp[0]))
+        # print(date)
+        tmpTeam = Team(data[0], date, data[2])
         teams.append(tmpTeam)
-    # print("Completed")
-    # print(teams)
     return teams

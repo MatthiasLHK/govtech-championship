@@ -18,7 +18,7 @@ class TextBox extends Component {
     
     handleSubmit(event) {
         // alert('An essay was submitted: ' + this.state.value);
-        axios.post(this.props.api, {teams: this.state.value}).then(res => {console.log(res)})
+        axios.post(this.props.api, {info: this.state.value}).then(res => {console.log(res)})
         event.preventDefault();
         this.setState({value:''})
     }
