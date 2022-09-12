@@ -1,4 +1,10 @@
 .App {
   text-align: center;
-  background-color: #282c34;
+  background-color: #e8ebef;
+  height: 100vh;
+  width: 100vw;
+}
+
+.Logo {
+
 }

@@ -1,4 +1,4 @@
-from create_connection import start_connection
+from backend.CreateConnection import start_connection
 
 def start(cursor, conn):
     create_team_table(cursor, conn)

@@ -1,13 +1,18 @@
 import './App.css';
-import TextBox from "./components/TextBox"
+import TextBox from "./components/TextBox";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import RankingTableA from "./components/RankingTableA";
+import RankingTableB from "./components/RankingTableB";
+import ClearButton from './components/ClearButton';
 
 function App() {
   return (
     <div className="App">
-      <div>
-        <TextBox title="Team formation input" api="/team-creation" value=""/>
-        <TextBox title="Match results input" api="/submit-results" value="teamA teamB 0 1"/>
-      </div>
+      <TextBox title="Team formation input" api="/team-creation" header="Team Sign Here!" placeholder="Please input teams registration here!"/>
+      <TextBox title="Match results input" api="/submit-results" header="Match Results Here!" placeholder="Please input match results here!"/>
+      <ClearButton />
+      <RankingTableA />
+      <RankingTableB />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-from backend.create_connection import start_connection
+from backend.CreateConnection import start_connection
 from backend.Models import Team
 
 class TeamRanker:
