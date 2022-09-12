@@ -1,5 +1,4 @@
 from .Models import Match
-from backend.insert_table import insert_matches
 
 def createMatches(input):
     entries = input.split("\n")

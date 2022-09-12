@@ -10,15 +10,15 @@ def insert_team(teams, conn):
     cursor.execute(sqlQuery)
     print(f"{counter} team has been inserted")
 
-def insert_matches(matches, conn):
-    cursor = conn.cursor()
-    counter = 0
-    query = "INSERT INTO Match (team_A, team_B, score_A, score_B) VALUES "
-    for match in matches:
-        values = f"('{match.teamA}', '{match.teamB}', {match.scoreA}, {match.scoreB}), "
-        query += values
-        counter += 1
-    query = query[:-2]
-    # print(query)
-    cursor.execute(query)
-    print(f"{counter} match results have been inserted")
+# def insert_matches(matches, conn):
+#     cursor = conn.cursor()
+#     counter = 0
+#     query = "INSERT INTO Match (team_A, team_B, score_A, score_B) VALUES "
+#     for match in matches:
+#         values = f"('{match.teamA}', '{match.teamB}', {match.scoreA}, {match.scoreB}), "
+#         query += values
+#         counter += 1
+#     query = query[:-2]
+#     # print(query)
+#     cursor.execute(query)
+#     print(f"{counter} match results have been inserted")

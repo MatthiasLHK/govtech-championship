@@ -5,8 +5,8 @@ function App() {
   return (
     <div className="App">
       <div>
-        <TextBox title="Team formation input" api="/team-creation"/>
-        <TextBox title="Match results input" api="/submit-results"/>
+        <TextBox title="Team formation input" api="/team-creation" value=""/>
+        <TextBox title="Match results input" api="/submit-results" value="teamA teamB 0 1"/>
       </div>
     </div>
   );

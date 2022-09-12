@@ -12,6 +12,8 @@ from backend.insert_table import insert_team
 app = Flask(__name__, static_folder='frontend/build', static_url_path='')
 CORS(app)
 
+tmpCache = {}
+
 @app.route("/team-creation", methods=["POST"])
 @cross_origin()
 def makeTeams():
@@ -20,6 +22,7 @@ def makeTeams():
     if data['info'] == "":
         return "0"
     teams = createTeams(data['info'])
+    tmpCache['teams'] = teams
     conn = start_connection()
     insert_team(teams, conn)
     conn.commit()
@@ -57,7 +60,7 @@ def serve():
     return send_from_directory(app.static_folder, 'index.html')
 
 def rankTeams(matches):
-    ranker = TeamRanker(matches)
+    ranker = TeamRanker(tmpCache['teams'], matches)
     ranker.rankTeams()
     teams = ranker.teams
     for team in teams:
