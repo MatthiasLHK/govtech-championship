@@ -19,16 +19,11 @@ class TextBox extends Component {
     handleChange(event) {
         this.setState({value: event.target.value});
     }
-
-    onSubmit = () => {
-        alert(this.state.value);
-    };
     
     handleSubmit(event) {
-        // alert(this.props.api);
-        axios.post(this.props.api, {info: this.state.value}).then(res => {console.log(res)})
         event.preventDefault();
-        setTimeout(() => {  window.location.reload(false); }, 1000);
+        axios.post(this.props.api, {info: this.state.value}).then(res => {console.log(res)})
+        this.setState({value: ''})
     }
 
     render() {
@@ -42,6 +37,7 @@ class TextBox extends Component {
                         as="textarea"
                         placeholder={this.props.placeholder}
                         onChange={this.handleChange}
+                        value={this.state.value}
                         />
                     </div>
                     <div className="button">
