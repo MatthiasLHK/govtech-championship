@@ -5,6 +5,8 @@
   width: 100vw;
 }
 
-.Logo {
-
+.Button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }

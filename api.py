@@ -78,7 +78,7 @@ def getRankingA():
         tmp[0] = rank
         response.append(tmp)
         rank += 1
-    print(response)
+    # print(response)
     return response
 
 @app.route("/getRankingB", methods=["GET"])
@@ -96,7 +96,7 @@ def getRankingB():
         tmp[0] = rank
         response.append(tmp)
         rank += 1
-    print(response)
+    # print(response)
     return response
 
 @app.route("/clearData", methods=["GET"])
@@ -109,8 +109,6 @@ def clearAllData():
     return "Data cleared!"
 
 def rankTeams(matches):
-    ranker = TeamRanker(tmpCache['teams'], matches)
+    ranker = TeamRanker(matches)
     ranker.rankTeams()
     teams = ranker.teams
-    for team in teams:
-        print(team.teamInfo())

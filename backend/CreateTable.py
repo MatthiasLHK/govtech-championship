@@ -14,7 +14,3 @@ def create_team_table(cursor, conn):
     print("Team table created successfully")
     conn.commit()
 
-conn = start_connection()
-cursor = conn.cursor()
-start(cursor, conn)
-

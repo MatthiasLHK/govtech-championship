@@ -1,31 +1,37 @@
 from backend.CreateConnection import start_connection
 from backend.Models import Team
+# from CreateConnection import start_connection
+# from Models import Team
 
 class TeamRanker:
-    def __init__(self, teams, matches):
-        self.teams = teams
+    def __init__(self, matches):
+        self.teams = self.getAllTeams()
         self.matches = matches
 
-    def insertToDb(self, team, cursor):
-        teamDb = self.getFromDb(team.teamName, cursor)
-        team.score += teamDb.score
-        team.altScore += teamDb.altScore
-        team.goals += teamDb.goals
-        team.win += teamDb.win
-        team.lose += teamDb.lose
-        team.draw += teamDb.draw
-        query = f"UPDATE Team SET score = {team.score}, alt_score = {team.altScore}, num_goals = {team.goals}, win = {team.win}, lose = {team.lose}, draw = {team.draw} WHERE team_name = '{team.teamName}'"
-        cursor.execute(query)
+    def insertToDb(self, cursor):
 
-        
-        
-    def getFromDb(self, teamName, cursor):
-        query = f"SELECT * FROM Team WHERE team_name = '{teamName}'"
-        cursor.execute(query)
-        data = cursor.fetchall()[0]
-        teamDb = Team(data[1:])
-        return teamDb
+        # teamDb = self.getFromDb(team.teamName, cursor)
+        queries = ""
+        for team in self.teams:
+            queries += f"UPDATE Team SET score = {team.score}, alt_score = {team.altScore}, num_goals = {team.goals}, win = {team.win}, lose = {team.lose}, draw = {team.draw} WHERE team_name = '{team.teamName}';\n"
+        print(queries.strip())
+        cursor.execute(queries.strip())
     
+    def getAllTeams(self):
+        teams = []
+        conn = start_connection()
+        cursor = conn.cursor()
+        query = "SELECT * FROM Team"
+        cursor.execute(query)
+        data = cursor.fetchall()
+        # print(data)
+        for entry in data:
+            tmp = list(entry)
+            tmp = tmp[1:]
+            team = Team(tmp)
+            teams.append(team)
+        return teams
+
     def rankTeams(self):
         conn = start_connection()
         cursor = conn.cursor()
@@ -43,11 +49,7 @@ class TeamRanker:
                 # Draw
                 self.updateTeam(match.teamA, "Draw", teamAGoals)
                 self.updateTeam(match.teamB, "Draw", teamBGoals)
-        # self.teams = sorted(self.teams, key=lambda x : (x.score, x.goals, x.altScore, x.registeredDate))
-        # self.teams = reversed(self.teams)
-        # print(self.teams)
-        for team in self.teams:
-            self.insertToDb(team, cursor)
+        self.insertToDb(cursor)
         conn.commit()
         conn.close()
 
@@ -62,3 +64,7 @@ class TeamRanker:
                 break
         if (not isFound):
             print("Error: Team name not registered")
+
+
+# t = TeamRanker(None, None)
+# t.getAllTeams()

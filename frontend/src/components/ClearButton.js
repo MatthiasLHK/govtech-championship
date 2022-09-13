@@ -1,7 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import './TextBox.css';
 
 function ClearButton() {
 
