@@ -1,7 +1,5 @@
 from backend.CreateConnection import start_connection
 from backend.Models import Team
-# from CreateConnection import start_connection
-# from Models import Team
 
 class TeamRanker:
     def __init__(self, matches):
@@ -9,8 +7,6 @@ class TeamRanker:
         self.matches = matches
 
     def insertToDb(self, cursor):
-
-        # teamDb = self.getFromDb(team.teamName, cursor)
         queries = ""
         for team in self.teams:
             queries += f"UPDATE Team SET score = {team.score}, alt_score = {team.altScore}, num_goals = {team.goals}, win = {team.win}, lose = {team.lose}, draw = {team.draw} WHERE team_name = '{team.teamName}';\n"
@@ -24,7 +20,6 @@ class TeamRanker:
         query = "SELECT * FROM Team"
         cursor.execute(query)
         data = cursor.fetchall()
-        # print(data)
         for entry in data:
             tmp = list(entry)
             tmp = tmp[1:]
@@ -63,8 +58,4 @@ class TeamRanker:
                 isFound = True
                 break
         if (not isFound):
-            print("Error: Team name not registered")
-
-
-# t = TeamRanker(None, None)
-# t.getAllTeams()
+            raise Exception("Error: Team name not registered")

@@ -13,8 +13,6 @@ from backend.CreateTable import create_team_table
 app = Flask(__name__, static_folder='frontend/build', static_url_path='')
 CORS(app)
 
-tmpCache = {}
-
 @app.route('/')
 @cross_origin()
 def serve():
@@ -28,8 +26,10 @@ def makeTeams():
     data = ast.literal_eval(tmp)
     if data['info'] == "":
         return "0"
-    teams = createTeams(data['info'])
-    tmpCache['teams'] = teams
+    try:
+        teams = createTeams(data['info'])
+    except Exception as error:
+        return error, 400
     conn = start_connection()
     insert_team(teams, conn)
     conn.commit()
@@ -37,9 +37,6 @@ def makeTeams():
     result = {}
     result['teams'] = str(len(teams))
     tmp = []
-    # for team in teams:
-    #     tmp.append(team.teamInfo())
-    # result["teamsInfo"] = tmp
     return result
 
     
@@ -51,15 +48,12 @@ def submitMatchResults():
     data = ast.literal_eval(tmp)
     if data['info'] == "":
         return "0"
-    matches = createMatches(data['info'])
-    rankTeams(matches)
-    result = {}
-    result['matches'] = str(len(matches))
-    tmp = []
-    for match in matches:
-        tmp.append(match.matchInfo())
-    result["matchInfo"] = tmp
-    return result
+    try:
+        matches = createMatches(data['info'])
+        rankTeams(matches)
+    except Exception as error:
+        return error, 400
+    return len(matches)
 
 @app.route("/getRankingA", methods=["GET"])
 @cross_origin()
@@ -70,7 +64,6 @@ def getRankingA():
     cursor.execute(query)
     data = cursor.fetchall()
     conn.close()
-    # print(data)
     response = []
     rank = 1
     for entry in data:
@@ -78,7 +71,6 @@ def getRankingA():
         tmp[0] = rank
         response.append(tmp)
         rank += 1
-    # print(response)
     return response
 
 @app.route("/getRankingB", methods=["GET"])
@@ -96,7 +88,6 @@ def getRankingB():
         tmp[0] = rank
         response.append(tmp)
         rank += 1
-    # print(response)
     return response
 
 @app.route("/clearData", methods=["GET"])
@@ -111,4 +102,3 @@ def clearAllData():
 def rankTeams(matches):
     ranker = TeamRanker(matches)
     ranker.rankTeams()
-    teams = ranker.teams
