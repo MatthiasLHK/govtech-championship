@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, make_response
 from flask_cors import CORS, cross_origin
 from flask.helpers import send_from_directory
 import ast
@@ -29,15 +29,12 @@ def makeTeams():
     try:
         teams = createTeams(data['info'])
     except Exception as error:
-        return error, 400
+        return make_response(str(error), 400)
     conn = start_connection()
     insert_team(teams, conn)
     conn.commit()
     conn.close()
-    result = {}
-    result['teams'] = str(len(teams))
-    tmp = []
-    return result
+    return make_response(str(len(teams)), 200)
 
     
 
@@ -52,8 +49,8 @@ def submitMatchResults():
         matches = createMatches(data['info'])
         rankTeams(matches)
     except Exception as error:
-        return error, 400
-    return len(matches)
+        return make_response(str(error), 400)
+    return make_response(str(len(matches)), 200)
 
 @app.route("/getRankingA", methods=["GET"])
 @cross_origin()

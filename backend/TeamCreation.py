@@ -9,6 +9,8 @@ def createTeams(input):
             continue
         entry.strip()
         data = entry.split(" ")
+        if len(data) != 3:
+            raise Exception("Invalid number of arugments for team creation")
         tmp = data[1].strip().split("/")
         try:
             date = datetime.date(2022, int(tmp[1]), int(tmp[0]))

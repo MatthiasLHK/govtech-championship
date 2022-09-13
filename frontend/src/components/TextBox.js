@@ -22,9 +22,11 @@ class TextBox extends Component {
     
     handleSubmit(event) {
         event.preventDefault();
-        axios.post(this.props.api, {info: this.state.value}).then(res => {console.log(res)})
+        axios.post(this.props.api, {info: this.state.value}).then(res => {
+            console.log(res)
+        })
         this.setState({value: ''});
-        setTimeout(() => {  window.location.reload(false); }, 2000);
+        // setTimeout(() => {  window.location.reload(false); }, 2000);
     }
 
     render() {
