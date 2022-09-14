@@ -7,7 +7,11 @@ def start_connection():
     user = "ogzttonuqvfmmq"
     password = "e32358527339f7990c2436bf2904d1fda0c590808e1ef489e078815079ff216c"
 
-    conn = psycopg2.connect(database=database, user=user, password=password, host=host, port=port)
-    print("Connected to DB")
+    try:
+        conn = psycopg2.connect(database=database, user=user, password=password, host=host, port=port)
+        print("Connected to DB")
+        return conn
+    except:
+        raise Exception("Failed to connect to database!")
 
-    return conn
+    

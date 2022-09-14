@@ -30,8 +30,8 @@ def makeTeams():
         teams = createTeams(data['info'])
     except Exception as error:
         return make_response(str(error), 400)
-    conn = start_connection()
     try:
+        conn = start_connection()
         insert_team(teams, conn)
     except Exception as error:
         conn.close()
@@ -59,23 +59,32 @@ def submitMatchResults():
 @app.route("/getRankingA", methods=["GET"])
 @cross_origin()
 def getRankingA():
-    response = getRankings(1)
-    return response
+    try:
+        response = getRankings(1)
+        return response
+    except Exception as error:
+        return make_response(str(error), 400)
 
 @app.route("/getRankingB", methods=["GET"])
 @cross_origin()
 def getRankingB():
-    response = getRankings(2)
-    return response
+    try:
+        response = getRankings(2)
+        return response
+    except Exception as error:
+        return make_response(str(error), 400)
 
 @app.route("/clearData", methods=["GET"])
 @cross_origin()
 def clearAllData():
-    print("Clearing data")
-    conn = start_connection()
-    cursor = conn.cursor()
-    create_team_table(cursor, conn)
-    return "Data cleared!"
+    try:
+        print("Clearing data")
+        conn = start_connection()
+        cursor = conn.cursor()
+        create_team_table(cursor, conn)
+        return "Data cleared!"
+    except Exception as error:
+        return make_response(str(error), 400)
 
 def rankTeams(matches):
     ranker = TeamRanker(matches)
