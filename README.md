@@ -22,6 +22,16 @@ Then, you can simply run the ``CreateTable.py`` file to auto create the tables r
 
 Also, before running the frontend, do note to change the proxy value in the ``package.json`` file to ``http://localhost:5000``.
 
+### Commands to run the frontend and backend
+
+1. cd into the frontend folder.
+2. run command ``npm install``
+3. run command ``npm start``
+4. open a new terminal and cd into the project root folder
+5. run command ``python -m flask run``
+
+**Note:** You will need to run the frontend and backend service separately on 2 different terminals.
+
 ## Results
 
 Here are some snapshot of the results based on the given sample testcases:
