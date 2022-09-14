@@ -58,4 +58,4 @@ class TeamRanker:
                 isFound = True
                 break
         if (not isFound):
-            raise Exception("Error: Team name not registered")
+            raise Exception(f"Error: {target} not registered")

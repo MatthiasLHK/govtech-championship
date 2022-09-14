@@ -31,7 +31,11 @@ def makeTeams():
     except Exception as error:
         return make_response(str(error), 400)
     conn = start_connection()
-    insert_team(teams, conn)
+    try:
+        insert_team(teams, conn)
+    except Exception as error:
+        conn.close()
+        return make_response(str(error), 400)
     conn.commit()
     conn.close()
     return make_response(str(len(teams)), 200)
