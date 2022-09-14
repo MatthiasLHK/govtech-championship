@@ -21,3 +21,16 @@ If you want to set this up locally, you would need to setup a local database, an
 Then, you can simply run the ``CreateTable.py`` file to auto create the tables required for this application.
 
 Also, before running the frontend, do note to change the proxy value in the ``package.json`` file to ``http://localhost:5000``.
+
+## Results
+
+Here are some snapshot of the results based on the given sample testcases:
+
+### Testcase 1:
+![Result 1](./images_readme/result1.png)
+
+### Testcase 2:
+![Result 2](./images_readme/result2.png)
+
+### Testcase 3:
+![Result 3](./images_readme/result3.png)
