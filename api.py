@@ -55,36 +55,13 @@ def submitMatchResults():
 @app.route("/getRankingA", methods=["GET"])
 @cross_origin()
 def getRankingA():
-    conn = start_connection()
-    cursor = conn.cursor()
-    query = "SELECT * FROM Team WHERE group_id = 1 ORDER BY score DESC, num_goals DESC, alt_score DESC, registration_date ASC"
-    cursor.execute(query)
-    data = cursor.fetchall()
-    conn.close()
-    response = []
-    rank = 1
-    for entry in data:
-        tmp = list(entry)
-        tmp[0] = rank
-        response.append(tmp)
-        rank += 1
+    response = getRankings(1)
     return response
 
 @app.route("/getRankingB", methods=["GET"])
 @cross_origin()
 def getRankingB():
-    conn = start_connection()
-    cursor = conn.cursor()
-    query = "SELECT * FROM Team WHERE group_id = 2 ORDER BY score DESC, num_goals DESC, alt_score DESC, registration_date ASC"
-    cursor.execute(query)
-    data = cursor.fetchall()
-    response = []
-    rank = 1
-    for entry in data:
-        tmp = list(entry)
-        tmp[0] = rank
-        response.append(tmp)
-        rank += 1
+    response = getRankings(2)
     return response
 
 @app.route("/clearData", methods=["GET"])
@@ -99,3 +76,30 @@ def clearAllData():
 def rankTeams(matches):
     ranker = TeamRanker(matches)
     ranker.rankTeams()
+
+def getRankings(group):
+    conn = start_connection()
+    cursor = conn.cursor()
+    query = f"SELECT * FROM Team WHERE group_id = {group} ORDER BY score DESC, num_goals DESC, alt_score DESC, registration_date ASC"
+    cursor.execute(query)
+    data = cursor.fetchall()
+    response = []
+    rank = 1
+    for entry in data:
+        tmp = list(entry)
+        tmp[0] = rank
+        date = tmp[2]
+        day = str(date.day)
+        month = date.strftime("%B")
+        if day == "1":
+            day += "st"
+        elif day == "2":
+            day += "nd"
+        elif day =="3":
+            day += "rd"
+        else:
+            day += "th"
+        tmp[2] = f"{day} {month}"
+        response.append(tmp)
+        rank += 1
+    return response

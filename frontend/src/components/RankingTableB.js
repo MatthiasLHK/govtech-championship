@@ -2,6 +2,7 @@ import Table from 'react-bootstrap/Table';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './RankingTable.css'
 
 const RankingTableB = (props) => {
     const [posts, setPosts] = useState({blogs: []});
@@ -10,12 +11,13 @@ const RankingTableB = (props) => {
         const getData = async() => {
             const {data} = await axios.get("/getRankingB")
             setPosts({blogs: data});
-            console.log(data)
         };
         getData();
     }, [setPosts])
 
     return (
+        <div>
+            <h className="header">Group 2 Results</h>
         <Table striped bordered hover>
             <thead>
                 <tr>
@@ -69,6 +71,7 @@ const RankingTableB = (props) => {
                  }
             </tbody>
         </Table>
+        </div>
     )
 }
 

@@ -10,7 +10,7 @@ function ClearButton() {
     }
 
     return (
-        <Button type="button" class="btn btn-warning" onClick={()=>clearData()}>Clear all data!</Button>
+        <Button type="button" variant="btn btn-warning" onClick={()=>clearData()}>Clear all data!</Button>
     )
 }
 
