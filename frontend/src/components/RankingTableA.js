@@ -44,8 +44,8 @@ const RankingTableA = (props) => {
                                     <td class="p-3 mb-2 bg-success text-white">{item[1]}</td>
                                     <td class="p-3 mb-2 bg-success text-white">{item[2]}</td>
                                     <td class="p-3 mb-2 bg-success text-white">{item[7]}</td>
-                                    <td class="p-3 mb-2 bg-success text-white">{item[8]}</td>
                                     <td class="p-3 mb-2 bg-success text-white">{item[9]}</td>
+                                    <td class="p-3 mb-2 bg-success text-white">{item[8]}</td>
                                     <td class="p-3 mb-2 bg-success text-white">{item[6]}</td>
                                     <td class="p-3 mb-2 bg-success text-white">{item[4]}</td>
                                     <td class="p-3 mb-2 bg-success text-white">{item[5]}</td>
@@ -59,8 +59,8 @@ const RankingTableA = (props) => {
                                     <td>{item[1]}</td>
                                     <td>{item[2]}</td>
                                     <td>{item[7]}</td>
-                                    <td>{item[8]}</td>
                                     <td>{item[9]}</td>
+                                    <td>{item[8]}</td>
                                     <td>{item[6]}</td>
                                     <td>{item[4]}</td>
                                     <td>{item[5]}</td>

@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# GovTech GDS ACE : We are the Champions
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Usage
+The main usage of the application is exactly as per specified in the requirements.
 
-## Available Scripts
+1. The user can input a multi-line set of teams to be registered.
+2. The user can input a multi-line set of match results between 2 teams.
+3. The user can view the team rankings for each group.
 
-In the project directory, you can run:
+**Additional feature:** 
+1. The user can input the match results multiple times and this will add on to the existing scores for the teams.
+2. There is also validation checks for both the inputs, where invalid dates, group number, match results are catched.
+3. If the team mentioned in the match result is not found, an error will also be shown to the user, and all entries in the same instance will not be committed to the database.
 
-### `npm start`
+**Note:** After submitting the match results, the user may need to click on the refresh data button to view the update rankings.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Local Setup
+If you want to set this up locally, you would need to setup a local database, and fill up the database credentials in the ``CreateConnection.py`` file located in ``backend`` folder.
 
-### `npm test`
+Then, you can simply run the ``CreateTable.py`` file to auto create the tables required for this application.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Also, before running the frontend, do note to change the proxy value in the ``package.json`` file to ``http://localhost:5000``.

@@ -9,6 +9,7 @@ def createTeams(input):
             continue
         entry.strip()
         data = entry.split(" ")
+        print(type(data[2]))
         if len(data) != 3:
             raise Exception("Invalid number of arugments for team creation")
         tmp = data[1].strip().split("/")
@@ -19,7 +20,7 @@ def createTeams(input):
         except:
             errMessage = "Invalid or missing date value provided"
             raise Exception(errMessage)
-        if data[2] != "1" or data[2] != "2":
+        if data[2] != "1" and data[2] != "2":
             raise Exception("Invalid group number, can only choose to be either Group 1 or 2!")
         tmpTeam = Team(data[0], date, data[2])
         teams.append(tmpTeam)
